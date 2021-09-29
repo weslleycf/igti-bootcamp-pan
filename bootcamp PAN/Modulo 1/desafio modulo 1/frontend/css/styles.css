@@ -50,3 +50,11 @@ table {
 .emp-name{
     text-align: left;
 }
+
+th, td {
+    padding: 5px;
+}
+
+label{
+    margin: 5px;
+}

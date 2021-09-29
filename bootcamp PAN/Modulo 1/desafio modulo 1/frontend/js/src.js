@@ -4,6 +4,7 @@ const rolesUrl = 'http://localhost:3000/roles'
 const tbody = document.querySelector('tbody')
 const rolesFilter = document.querySelector('.roles-filter')
 const select = document.querySelector('select')
+const totalEmployees = document.querySelector('.total')
 const orderOptions = [
     {value:'name-asc', text:'Name ascendent'},
     {value:'name-desc', text:'Name descendent'},
@@ -16,12 +17,14 @@ let employees, roles
 let selectedFilter = new Set
 
 
-function fetchJson(url){
-     return fetch(url).then(r => r.json())
+async function fetchJson(url){
+     const r = await fetch(url)
+    return await r.json()
 }
 
 async function fetchData(){
     [employees,roles] = await Promise.all([fetchJson(employeesUrl), fetchJson(rolesUrl)])
+    employees.sort((a, b) => a.name < b.name ? 1 : -1)
     renderTable(employees)
     renderSortBy(employees)
     renderFilter(roles)
@@ -71,6 +74,7 @@ function renderTable(data){
         })
     
     }
+    totalEmployees.textContent = tbody.childElementCount
 }
 
 function renderFilter(data){
@@ -94,6 +98,7 @@ function renderFilter(data){
             renderTable(employees)
         })
         rolesFilter.appendChild(div)
+        
     });
 }
 
