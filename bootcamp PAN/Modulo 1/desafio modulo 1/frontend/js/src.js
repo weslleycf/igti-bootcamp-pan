@@ -4,6 +4,12 @@ const rolesUrl = 'http://localhost:3000/roles'
 const tbody = document.querySelector('tbody')
 const rolesFilter = document.querySelector('.roles-filter')
 const select = document.querySelector('select')
+const orderOptions = [
+    {value:'name-asc', text:'Name ascendent'},
+    {value:'name-desc', text:'Name descendent'},
+    {value:'salary-asc', text:'Salary ascendent'},
+    {value:'salary-desc', text:'Salary descendent'}
+]
 
 
 let employees, roles
@@ -17,11 +23,19 @@ function fetchJson(url){
 async function fetchData(){
     [employees,roles] = await Promise.all([fetchJson(employeesUrl), fetchJson(rolesUrl)])
     renderTable(employees)
+    renderSortBy(employees)
     renderFilter(roles)
+    
+    
 }
 
 fetchData()
+
                       
+
+
+
+
 
 
 function renderTable(data){
@@ -30,6 +44,9 @@ function renderTable(data){
             tbody.removeChild(tbody.lastChild)
         }
     }
+
+    const optionValue = select.value
+
     if (selectedFilter.size === 0){
         data.forEach(element => {
             tbody.insertAdjacentHTML('afterbegin',`<tr data-role["${element.role_id}"]>
@@ -83,20 +100,43 @@ function renderFilter(data){
 
 //select.addEventListener('onchage', sortBy(select.value, employees))
 
-function sortBy(sort, data){
-   let sortedData;
-    if (sort === 'name-asc'){
-        sortedData = data.sort((a, b) => a.name > b.name ? 1 : -1)
-        console.log(sortedData)
-    } else if (sort === 'name-desc'){
-        sortedData = data.sort((a, b) => a.name < b.name ? 1 : -1)
-        console.log(sortedData)
-    } else   if (sort === 'salary-asc'){
-        sortedData = data.sort((a, b) => a.salary > b.salary ? 1 : -1)
-        console.log(sortedData)
+function renderSortBy(employees){
+    let sortedEmployees
+    
+    orderOptions.forEach((obj) => {
+        const option = document.createElement('option')
+        option.value = obj.value
+        option.textContent = obj.text
+        select.appendChild(option)
+        select.addEventListener('change', e => sort(e, employees))
+    })
+
+
+
+
+
+
+
+function sort (e, employees) {
+    const option = e.target.value
+    
+    if (option === 'name-asc'){
+        sortedEmployees = employees.sort((a, b) => a.name < b.name ? 1 : -1)
+    } else if (option === 'name-desc'){
+        sortedEmployees = employees.sort((a, b) => a.name > b.name ? 1 : -1)
+    } else   if (option === 'salary-asc'){
+        sortedEmployees = employees.sort((a, b) => a.salary < b.salary ? 1 : -1)
+    } else if (option === 'salary-desc'){
+        sortedEmployees = employees.sort((a, b) => a.salary > b.salary ? 1 : -1)
     } else {
-        sortedData = data.sort((a, b) => a.salary < b.salary ? 1 : -1)
-        console.log(sortedData)
+        sortedEmployees = employees
     }
+    renderTable(sortedEmployees)
+}
+
+
+return sortedEmployees
+
 
 }
+
