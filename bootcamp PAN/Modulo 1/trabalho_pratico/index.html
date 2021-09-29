@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Simulação de Financiamento</title>
+</head>
+<body>
+    <div class="container">
+    <h1>Simulação de Financiamento</h1>
+    <div class="simulador">
+       
+        <div class="input-field">
+            <label for="valor" >Valor: </label>
+            <input name="valor" value="200000" type="text" data-js="valor">
+        </div>
+        <div class="input-field">
+            <label for="prazo" >Prazo: </label>
+            <input name="prazo" value="20" type="text" data-js="prazo">
+        </div>
+        <div class="input-field">
+            <label for="juros-ano" >Juros ao ano: </label>
+            <input name="juros-ano" value="0.08"type="number" data-js="juros-ano">
+        </div>
+    
+    <button class="button">Simular</button>
+</div>
+    
+    
+    
+    <h2>Resultado</h2>
+    <div class="calculo">
+            <p>Prazo (Meses): <span data-js="prazo-meses"></span></p> 
+            <p>Juros ao mês: <span data-js="juros-mes"></span></p> 
+            <p>Juros acumulado: <span data-js="juros-acumulado"></span></p> 
+
+    </div>
+    
+    <table>
+        <thead>
+            <tr>
+               <th>Prestação</th>
+               <th>Amortização</th>
+               <th>Juros</th>
+               <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+</div>
+    <script src="src.js"></script>
+</div>
+</div>
+
+</body>
+</html>
