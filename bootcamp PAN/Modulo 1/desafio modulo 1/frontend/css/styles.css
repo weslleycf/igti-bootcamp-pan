@@ -1,60 +1,63 @@
-*, *::before, *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-body{
-    background-color: #746D75;
-    color: #40434E;
-    font-family: sans-serif;
+body {
+  background-color: #746d75;
+  color: #40434e;
+  font-family: sans-serif;
 }
-.container{
-    background-color: #fff;
-    display: flex;
-    max-width: 1200px;
-    margin: 0 auto;
+.container {
+  background-color: #fff;
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
 }
-aside{
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    min-width: 400px;
+aside {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  min-width: 400px;
 }
 aside > * {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
-main{
-    padding: 20px;
-    min-width: 800px;
+main {
+  padding: 20px;
+  min-width: 800px;
 }
 main > * {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
-.roles-filter{
-    display: flex;
-    flex-direction: column;
+.roles-filter {
+  display: flex;
+  flex-direction: column;
 }
 
-fieldset{
-    padding: 5px
+fieldset {
+  padding: 5px;
 }
 
 table {
-    margin-top: 20px;
-    width: 100%;
-    border-collapse: collapse;
-    text-align: center;
+  margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
 }
 
-.emp-name{
-    text-align: left;
+.emp-name {
+  text-align: left;
 }
 
-th, td {
-    padding: 5px;
+th,
+td {
+  padding: 5px;
 }
 
-label{
-    margin: 5px;
+label {
+  margin: 5px;
 }
