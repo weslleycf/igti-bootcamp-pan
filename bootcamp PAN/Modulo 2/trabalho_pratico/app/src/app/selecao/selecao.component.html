@@ -1,45 +1,20 @@
-<h1>Monte seu açaí</h1>
+<h2>{{titulo}}</h2>
+<p *ngIf="escolhaAte > 1">Escolha até {{escolhaAte}} sabores ({{selectedTotal}} escolhidos)</p>
+<div *ngIf="escolhaAte === 1; else elseBlock">
 
-<section class="tamanho">
-<h2>Tamanho</h2>
-<div>
-    <label for=""><input type="radio" name="300ml" id="300ml">300 ml</label>
+<div *ngFor="let opcao of opcoes; index as i">
+    <label><input type="radio" name="{{titulo | lowercase}}" id="{{opcao}} " value="{{opcao}}">{{opcao}}</label>
 </div>
-<div>
-    <label for=""><input type="radio" name="500ml" id="500ml">500 ml</label>
 </div>
-</section>
-<section class="acrescimos">
-    <h2>Acréscimos</h2>
-    <p>Escolha até 3 sabores</p>
-    <div>
-        <input type="checkbox" name="leite_consensado" id="leite_condensado">
-        <label for="leite_condensado">Leite Condensado</label>
-    </div>
-    <div>
-        <input type="checkbox" name="banana" id="banana">
-        <label for="banana">Banana</label>
-    </div>
-    <div>
-        <input type="checkbox" name="granola" id="granola">
-        <label for="granola">Granola</label>
-    </div>
-    <div>
-        <input type="checkbox" name="morango" id="morango">
-        <label for="morango">Morango</label>
-    </div>
-    <div>
-        <input type="checkbox" name="leite_em_po" id="leite_em_po">
-        <label for="leite_em_po">Leite em pó</label>
-    </div>
-    <div>
-        <input type="checkbox" name="coco" id="coco">
-        <label for="coco">Côco</label>
-    </div>
-    <div>
-        <input type="checkbox" name="castanha_de_caju" id="castanha_de_caju">
-        <label for="castanha_de_caju">Castanha de cajú</label>
-    </div>
 
-</section>
+<ng-template #elseBlock>
+    <div class="acrescimo" *ngFor="let opcao of opcoes; index as i">
+    <label>
+        <input type="checkbox" name="{{titulo | lowercase}}" id="{{i}}" #checkbox value={{opcao}} 
+        (change)="selectedTotalChange($event)" 
+        [disabled]="selectedTotal >= escolhaAte ?  checkbox.checked ? false : true : false"
+        >
+        {{opcao}}</label> 
+</div></ng-template>
+
 
